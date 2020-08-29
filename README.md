@@ -31,8 +31,7 @@ This repository is a FiveM resource adding ipl/map edits, teleport's, and blips 
 ensure bob74_ipl
 ensure ipl_edits
 ensure map_edits
-start oi_version
-start oi-blips
+start oi_blips
 start vk_main
 start vk_teleports
 ```
