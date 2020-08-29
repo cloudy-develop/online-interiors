@@ -1,6 +1,6 @@
 # Online Interiors
 
-This repository is the FiveM resource adding edits, teleport's, and blips to GTA V.
+This repository is a FiveM resource adding ipl/map edits, teleport's, and blips to GTA V.
 
 ## Information
  - I basically did all the work of coordinates and ipl interior editing so you don't have to.
