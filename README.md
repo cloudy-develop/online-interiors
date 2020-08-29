@@ -40,6 +40,9 @@ start vk_teleports
 ## Other
 - If you want to change any of the bob74_ipl scripts you can probably find it here: https://github.com/Bob74/bob74_ipl/wiki
 
+### Credits / Permissions
+- Find the credits and permissions here: https://forum.cfx.re/t/release-online-interiors-with-teleports-no-esx-vrp-required/836300
+
 ### Note from Cloudy
 - I wanted to do this because I never really saw something with Teleports and Blips and most of the working online interiors for people without ESX or VRP.
 - I hope you can enjoy, I put in a lot of hours to complete this. Please expect there to be updates.
