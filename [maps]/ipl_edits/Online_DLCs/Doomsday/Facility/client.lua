@@ -7,20 +7,20 @@ Citizen.CreateThread(function()
     DoomsdayFacility = exports['bob74_ipl']:GetDoomsdayFacilityObject()
 
     -- Setting the color of the walls to "Expertise"
-    DoomsdayFacility.Walls.SetColor(DoomsdayFacility.Colors.expertise, true)
-    DoomsdayFacility.Decals.Set(DoomsdayFacility.Decals.style03, true)
+    DoomsdayFacility.Walls.SetColor(DoomsdayFacility.Colors.expertise)
+    DoomsdayFacility.Decals.Set(DoomsdayFacility.Decals.style03)
 
     -- Expertise lounge
-    DoomsdayFacility.Lounge.Set(DoomsdayFacility.Lounge.premier, DoomsdayFacility.Colors.expertise, true)
+    DoomsdayFacility.Lounge.Set(DoomsdayFacility.Lounge.premier, DoomsdayFacility.Colors.expertise)
 
     -- Expertise bedroom
-    DoomsdayFacility.Sleeping.Set(DoomsdayFacility.Sleeping.premier, DoomsdayFacility.Colors.expertise, true)
+    DoomsdayFacility.Sleeping.Set(DoomsdayFacility.Sleeping.premier, DoomsdayFacility.Colors.expertise)
 
     -- Security room
-    DoomsdayFacility.Security.Set(DoomsdayFacility.Security.on, DoomsdayFacility.Colors.expertise, true)
+    DoomsdayFacility.Security.Set(DoomsdayFacility.Security.on, DoomsdayFacility.Colors.expertise)
 
     -- Orbital cannon
-    DoomsdayFacility.Cannon.Set(DoomsdayFacility.Cannon.on, DoomsdayFacility.Colors.expertise, true)
+    DoomsdayFacility.Cannon.Set(DoomsdayFacility.Cannon.on, DoomsdayFacility.Colors.expertise)
 
     -- Privacy glass remote
     DoomsdayFacility.PrivacyGlass.Bedroom.Control.Enable(true)
@@ -42,10 +42,10 @@ Citizen.CreateThread(function()
     -- All trophies
     DoomsdayFacility.Details.Enable(DoomsdayFacility.Details.Trophies, false)
     -- Sets the color of the submarine trophy to "Expertise"
-    DoomsdayFacility.Details.Trophies.SetColor(DoomsdayFacility.Colors.expertise, true)
+    DoomsdayFacility.Details.Trophies.SetColor(DoomsdayFacility.Colors.expertise)
 
     -- All clutters
     DoomsdayFacility.Details.Enable(DoomsdayFacility.Details.Clutter, true)
 
-	RefreshInterior(DoomsdayFacility.interiorId, true)
+	RefreshInterior(DoomsdayFacility.interiorId)
 end)

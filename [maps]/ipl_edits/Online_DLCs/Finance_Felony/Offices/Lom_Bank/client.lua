@@ -13,7 +13,7 @@ Citizen.CreateThread(function()
     FinanceOffice3.Chairs.Set(FinanceOffice3.Chairs.on)
 
     -- Disabling booze bottles
-    FinanceOffice3.Booze.Clear(FinanceOffice3.Booze.off)
+    FinanceOffice3.Booze.Set(FinanceOffice3.Booze.off)
 
 	-- Refresh Interior
     RefreshInterior(FinanceOffice3.interiorId)

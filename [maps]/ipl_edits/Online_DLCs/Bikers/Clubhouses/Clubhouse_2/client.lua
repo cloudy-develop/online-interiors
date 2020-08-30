@@ -19,10 +19,10 @@ Citizen.CreateThread(function()
     BikerClubhouse2.Mural.Set(BikerClubhouse2.Mural.death3)
 
     -- Enabling gun locker
-    BikerClubhouse2.GunLocker.Set(BikerClubhouse2.GunLocker.on, true)
+    BikerClubhouse2.GunLocker.Set(BikerClubhouse2.GunLocker.on)
 
     -- Enabling mod booth
-    BikerClubhouse2.ModBooth.Set(BikerClubhouse2.ModBooth.on, true)
+    BikerClubhouse2.ModBooth.Set(BikerClubhouse2.ModBooth.on)
 
     -- Clubhouse details
     BikerClubhouse2.Meth.Set(BikerClubhouse2.Meth.none)

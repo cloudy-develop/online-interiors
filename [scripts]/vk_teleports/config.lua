@@ -61,10 +61,10 @@ INTERIORS = {
 	[52] = {id = 52, x = -912.96, y = -365.21, z = 114.28, h = 112.55, name = "Richards Majestic, Apt 2", destination = {152,53}},
 	[53] = {id = 53, x = -933.50, y = -384.39, z = 38.96, h = 121.42, name = "Richards Majestic Lobby", destination = {152,50,51,52}},
 	-- Del Perro Heights
-	[54] = {id = 54, x = -1449.93, y = -525.76, z = 69.55, h = 30.20, name = "Del Perro Heights, Apt 20", destination = {57}},
-	[55] = {id = 55, x = -1449.98, y = -525.8, z = 56.93, h = 29.66, name = "Del Perro Heights, Apt 7", destination = {57}},
-	[56] = {id = 56, x = -1452.48, y = -540.26, z = 74.04, h = 33.06, name = "Del Perro Heights, Apt 4", destination = {57}},
-	[57] = {id = 57, x = -1447.31, y = -537.77, z = 34.74, h = 208.41, name = "Del Perro Heights Lobby", destination = {54,55,56}},
+	[54] = {id = 54, x = -1449.93, y = -525.76, z = 69.55, h = 30.20, name = "Del Perro Heights, Apt 20", destination = {57,155}},
+	[55] = {id = 55, x = -1449.98, y = -525.8, z = 56.93, h = 29.66, name = "Del Perro Heights, Apt 7", destination = {57,155}},
+	[56] = {id = 56, x = -1452.48, y = -540.26, z = 74.04, h = 33.06, name = "Del Perro Heights, Apt 4", destination = {57,155}},
+	[57] = {id = 57, x = -1447.31, y = -537.77, z = 34.74, h = 208.41, name = "Del Perro Heights Lobby", destination = {54,55,56,155}},
 	-- Tinsel Towers
 	[58] = {id = 58, x = -596.40, y = 56.10, z = 108.20, h = 356.60, name = "Tinsel Towers, Apt 45", destination = {61}},
 	[59] = {id = 59, x = -603.43, y = 58.96, z = 98.20, h = 88.01, name = "Tinsel Towers, Apt 42", destination = {61}},
@@ -177,5 +177,6 @@ INTERIORS = {
 	-- Other
 	[152] = {id = 152, x = -903.17, y = -369.94, z = 136.28, h = 116.96, name = "Richards Majestic Helipad", destination = {50,51,52,53}},
 	[153] = {id = 153, x = -1618.43, y = -3007.99, z = -75.20, h = 174.46, name = "Nightclub Office", destination = {154}},
-	[154] = {id = 154, x = -1507.66, y = -3024.46, z = -79.24, h = 177.89, name = "Nightclub Basement", destination = {153}}
+	[154] = {id = 154, x = -1507.66, y = -3024.46, z = -79.24, h = 177.89, name = "Nightclub Basement", destination = {153}},
+	[155] = {id = 155, x = -1456.37, y = -514.44, z = 31.58, h = 211.62, name = "Del Perro Heights Garage", destination = {54,55,56,57}}
 }

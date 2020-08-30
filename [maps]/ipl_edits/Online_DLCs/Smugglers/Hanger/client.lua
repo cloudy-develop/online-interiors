@@ -1,7 +1,7 @@
 -- Online Interiors IPL Edits
 -- Use https://github.com/Bob74/bob74_ipl/wiki to edit below
 
--- Smuggler Hanger (Location)
+-- Smuggler Hanger (LSIA)
 Citizen.CreateThread(function()
     -- Getting the object to interact with
     SmugglerHangar = exports['bob74_ipl']:GetSmugglerHangarObject()
