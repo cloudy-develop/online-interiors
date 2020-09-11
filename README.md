@@ -6,7 +6,7 @@ This repository is a FiveM resource adding ipl/map edits, teleport's, and blips 
  - I basically did all the work of coordinates and ipl interior editing so you don't have to.
  - Please make sure to read the whole README for everything to work correctly.
  - Since the last update, I have removed the map edits folder. To get the map edits go here: https://github.com/Cloud-Developments/oi_map_edits
- - Online Interiors Map Edits will remove some annoying obstructions around a few of the interiors.
+ - Online Interior Map Edits will remove some annoying obstructions around a few of the interiors.
 
 ## How to Install
  
