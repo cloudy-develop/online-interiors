@@ -12,7 +12,7 @@ This repository is a FiveM resource adding ipl/map edits, teleport's, and blips 
  
 ### Git Clone
 
-1. Run CMD in your "resources" folder and type "git clone "https://github.com/Cloud-Developments/online_interiors.git". (MUST BE NAMED "online_interiors" AND BE DIRECTLY IN RESOURCES FOLDER)
+1. Run CMD in your "resources" folder and type "git clone https://github.com/Cloud-Developments/online_interiors.git". (MUST BE NAMED "online_interiors" AND BE DIRECTLY IN RESOURCES FOLDER)
 2. Download the latest version of "bob74_ipl" from "https://github.com/Bob74/bob74_ipl/releases".
 3. Install "bob74_ipl" in the "resources" folder. (MUST BE NAMED "bob74_ipl" AND BE DIRECTLY IN RESOURCES FOLDER)
 4. Ensure "bob74_ipl", "online_interiors" in your "server.cfg". ("bob74_ipl" MUST BE STARTED BEFORE "online_interiors")
