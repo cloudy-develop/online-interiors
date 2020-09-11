@@ -27,7 +27,7 @@ This repository is a FiveM resource adding ipl/map edits, teleport's, and blips 
 ## Resource List
 ```
 ensure bob74_ipl
-ensure ipl_edits
+ensure online_interiors
 ```
 
 ## Other
