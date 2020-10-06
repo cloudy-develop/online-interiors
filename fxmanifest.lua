@@ -46,11 +46,6 @@ client_scripts{
 	'files/blips/client.lua'
 }
 
-server_scripts{
-	-- Teleport Script --
-	'files/teleports/vk_main/server.lua'
-}
-
 exports {
     'localPed',
     'tablelength'

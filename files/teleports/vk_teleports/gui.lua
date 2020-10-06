@@ -167,17 +167,18 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
 
-        local ped = GetPlayerPed(-1)
-        local playerPos = GetEntityCoords(ped, true)
-        local vehicle = GetVehiclePedIsIn(ped, false)
-
-        if (Vdist(playerPos.x, playerPos.y, playerPos.z, INTERIORS[POS_actual].x, INTERIORS[POS_actual].y, INTERIORS[POS_actual].z) > 2.0) then
-			if gui_interiors.opened then
-				gui_interiors_CloseMenu()
-			end
-		end
-
 		if gui_interiors.opened then
+			local pped = GetPlayerPed(-1)
+			local playerPos = GetEntityCoords(pped, true)
+			local vehicle = GetVehiclePedIsIn(pped, false)
+
+			if (Vdist(playerPos.x, playerPos.y, playerPos.z, INTERIORS[POS_actual].x, INTERIORS[POS_actual].y, INTERIORS[POS_actual].z) > 2.0) then
+				if gui_interiors.opened then
+					gui_interiors_CloseMenu()
+					continue
+				end
+			end
+
             local ped = exports.online_interiors:localPed()
             local menu = gui_interiors.menu[gui_interiors.currentmenu]
             gui_interiors_drawTxt(gui_interiors.title,1,1,gui_interiors.menu.x,gui_interiors.menu.y,1.0, 255,255,255,255)
@@ -209,10 +210,7 @@ Citizen.CreateThread(function()
 						gui_interiors_ButtonSelected(button)
 					end
                 end
-            end
-		end
-
-		if gui_interiors.opened then
+			end
 			if IsControlJustPressed(1,177) then
 				gui_interiors_BackMenu()
 			end
@@ -237,6 +235,5 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
-
 	end
 end)
