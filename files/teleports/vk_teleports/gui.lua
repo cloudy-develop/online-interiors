@@ -173,10 +173,8 @@ Citizen.CreateThread(function()
 			local vehicle = GetVehiclePedIsIn(pped, false)
 
 			if (Vdist(playerPos.x, playerPos.y, playerPos.z, INTERIORS[POS_actual].x, INTERIORS[POS_actual].y, INTERIORS[POS_actual].z) > 2.0) then
-				if gui_interiors.opened then
-					gui_interiors_CloseMenu()
-					continue
-				end
+				gui_interiors_CloseMenu()
+				continue
 			end
 
             local ped = exports.online_interiors:localPed()
