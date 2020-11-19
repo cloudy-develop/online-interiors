@@ -3,7 +3,7 @@ games { 'gta5' }
 
 author 'Cloudy'
 description 'Online Interiors'
-version '1.0.2'
+version '1.0.3'
 
 dependency 'bob74_ipl'
 
@@ -37,16 +37,8 @@ client_scripts{
 	'files/maps/ipl_edits/smugglers/hanger/client.lua',
 	
 	-- Teleport Scripts --
-	'files/teleports/vk_main/client.lua',
-	'files/teleports/vk_teleports/client.lua',
-	'files/teleports/vk_teleports/config.lua',
-	'files/teleports/vk_teleports/gui.lua',
+	'files/teleports/client.lua',
 	
 	-- Blip Script --
 	'files/blips/client.lua'
-}
-
-exports {
-    'localPed',
-    'tablelength'
 }

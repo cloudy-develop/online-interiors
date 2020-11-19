@@ -1,5 +1,6 @@
-INTERIORS = {
-    -- MazeBank
+local INTERIORS = {
+--	[0] = {id = 0, x = 0, y = 0, z = 0, h = 0, name = "Nowhere", destination = {}},
+	-- MazeBank
 	[1] = {id = 1, x = -75.21, y = -824.83, z = 321.29, h = 157.83, name = "MazeBank Helipad", destination = {2,3,8,9}},
 	[2] = {id = 2, x = -75.46, y = -827.14, z = 242.50, h = 67.20, name = "MazeBank Office", destination = {1,3,8,9}},
 	[3] = {id = 3, x = -70.08, y = -827.78, z = 285.00, h = 71.42, name = "MazeBank Modshop", destination = {1,2,8,9}},
@@ -180,3 +181,285 @@ INTERIORS = {
 	[154] = {id = 154, x = -1507.66, y = -3024.46, z = -79.24, h = 177.89, name = "Nightclub Basement", destination = {153}},
 	[155] = {id = 155, x = -1456.37, y = -514.44, z = 31.58, h = 211.62, name = "Del Perro Heights Garage", destination = {54,55,56,57}}
 }
+
+local gui_interiors = {
+	hasBeenTeleported = false,
+	opened = false,
+	title = "",
+	currentmenu = "main",
+	lastmenu = nil,
+	lastbuttoncount = 0,
+	selectedbutton = 0,
+	x = 0.11,
+	y = 0.25,
+	width = 0.2,
+	height = 0.04,
+	from = 1,
+	to = 10,
+	scale = 0.4,
+	font = 0,
+	menu = {
+		["main"] = {
+			title = "Select Location",
+			name = "main"
+		},
+	}
+}
+
+local function tablelength(T)
+	local count = 0
+	for _ in pairs(T) do count = count + 1 end
+	return count
+end
+
+local function teleport(pos)
+	local ped = GetPlayerPed(-1)
+	if(IsPedInAnyVehicle(ped))then
+		ped = GetVehiclePedIsUsing(ped)
+	end
+	Citizen.CreateThread(function()
+		gui_interiors.hasBeenTeleported = true
+		NetworkFadeOutEntity(ped, true, false)
+		DoScreenFadeOut(400) Citizen.Wait(500)
+		
+		SetEntityCoords(ped, pos.x, pos.y, pos.z, 1, 0, 0, 1)
+		SetEntityHeading(ped, pos.h)
+		NetworkFadeInEntity(ped, 0)
+
+		Citizen.Wait(1500) DoScreenFadeIn(400)
+		gui_interiors.hasBeenTeleported = false
+	end)
+end
+
+
+-------------------------------------------------
+----------------CONFIG SELECTION----------------
+-------------------------------------------------
+local function gui_interiors_ButtonSelected(button)
+	PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+	if gui_interiors.currentmenu == "main" then
+		teleport(button)
+	end
+end
+
+-------------------------------------------------
+----------------CONFIG OPEN MENU-----------------
+-------------------------------------------------
+local function gui_interiors_OpenSubMenu(menu)
+	gui_interiors.from = 1
+	gui_interiors.to = 10
+	gui_interiors.selectedbutton = 0
+	if menu == "main" then
+		gui_interiors.lastmenu = nil
+	else
+		gui_interiors.lastmenu = gui_interiors.currentmenu
+	end
+	gui_interiors.currentmenu = menu
+end
+-------------------------------------------------
+------------------DRAW TITLE MENU----------------
+-------------------------------------------------
+local function gui_interiors_drawMenuTitle(txt,x,y)
+	local menu = gui_interiors
+	SetTextFont(2)
+	SetTextProportional(0)
+	SetTextScale(0.5, 0.5)
+	SetTextColour(255, 255, 255, 255)
+	SetTextEntry("STRING")
+	AddTextComponentString(txt)
+	DrawRect(x,y,menu.width,menu.height,0,0,0,255)
+	DrawText(x - menu.width/2 + 0.005, y - menu.height/2 + 0.0028)
+end
+-------------------------------------------------
+------------------DRAW MENU BOUTON---------------
+-------------------------------------------------
+local function gui_interiors_drawMenuButton(button,x,y,selected)
+	local menu = gui_interiors
+	SetTextFont(menu.font)
+	SetTextProportional(0)
+	SetTextScale(menu.scale, menu.scale)
+	if selected then
+		SetTextColour(0, 0, 0, 255)
+	else
+		SetTextColour(255, 255, 255, 255)
+	end
+	SetTextCentre(0)
+	SetTextEntry("STRING")
+	AddTextComponentString(button.name)
+	if selected then
+		DrawRect(x,y,menu.width,menu.height,255,255,255,255)
+	else
+		DrawRect(x,y,menu.width,menu.height,0,0,0,150)
+	end
+	DrawText(x - menu.width/2 + 0.005, y - menu.height/2 + 0.0028)
+end
+-------------------------------------------------
+------------------DRAW MENU INFO-----------------
+-------------------------------------------------
+local function gui_interiors_drawMenuInfo(text)
+	local menu = gui_interiors
+	SetTextFont(menu.font)
+	SetTextProportional(0)
+	SetTextScale(0.45, 0.45)
+	SetTextColour(255, 255, 255, 255)
+	SetTextCentre(0)
+	SetTextEntry("STRING")
+	AddTextComponentString(text)
+	DrawRect(0.675, 0.95,0.65,0.050,255,255,255,150)
+	DrawText(0.365, 0.934)
+end
+-------------------------------------------------
+----------------DRAW MENU DROIT------------------
+-------------------------------------------------
+local function gui_interiors_drawMenuRight(txt,x,y,selected)
+	local menu = gui_interiors
+	SetTextFont(menu.font)
+	SetTextProportional(0)
+	SetTextScale(menu.scale, menu.scale)
+	--SetTextRightJustify(1)
+	if selected then
+		SetTextColour(0, 0, 0, 255)
+	else
+		SetTextColour(255, 255, 255, 255)
+	end
+	SetTextCentre(1)
+	SetTextEntry("STRING")
+	AddTextComponentString(txt)
+	DrawRect(0.01 + (menu.width)+((menu.width/3)/2),y,menu.width/3,menu.height,255,255,255,150)
+	DrawText(0.01 + (menu.width)+((menu.width/3)/2), y - menu.height/2 + 0.0028)
+end
+-------------------------------------------------
+-------------------DRAW TEXT---------------------
+-------------------------------------------------
+local function gui_interiors_drawTxt(text,font,centre,x,y,scale,r,g,b,a)
+	SetTextFont(font)
+	SetTextProportional(0)
+	SetTextScale(scale, scale)
+	SetTextColour(r, g, b, a)
+	SetTextDropShadow(0, 0, 0, 0,255)
+	SetTextDropShadow()
+	SetTextOutline()
+	SetTextCentre(centre)
+	SetTextEntry("STRING")
+	AddTextComponentString(text)
+	DrawText(x , y)
+end
+-------------------------------------------------
+----------------CONFIG BACK MENU-----------------
+-------------------------------------------------
+local function gui_interiors_BackMenu()
+	if gui_interiors.currentmenu == "main" then
+		gui_interiors.lastmenu = nil
+		gui_interiors_CloseMenu()
+		PlaySound(-1, "QUIT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+	elseif gui_interiors.lastmenu ~= nil then
+		gui_interiors_OpenSubMenu(gui_interiors.lastmenu)
+	end 
+end
+-------------------------------------------------
+----------------FONCTION OPEN--------------------
+-------------------------------------------------
+local function gui_interiors_OpenMenu()
+	gui_interiors.opened = true
+end
+-------------------------------------------------
+----------------FONCTION CLOSE-------------------
+-------------------------------------------------
+local function gui_interiors_CloseMenu()
+	gui_interiors.opened = false
+	gui_interiors.from = 1
+	gui_interiors.to = 10
+	gui_interiors.selectedbutton = 0
+end
+-------------------------------------------------
+----------------FONCTION OPEN MENU---------------
+-------------------------------------------------
+Citizen.CreateThread(function()
+	local POS_actual = 0
+	while true do
+		Citizen.Wait(0)
+
+		if gui_interiors.hasBeenTeleported then continue end
+		
+		local ped = GetPlayerPed(-1)
+		local playerPos = GetEntityCoords(ped, true)
+
+		for _,pos in pairs(INTERIORS) do
+			local distance = Vdist(playerPos.x, playerPos.y, playerPos.z, pos.x, pos.y, pos.z)
+		
+			if distance < 500 then
+				DrawMarker(1, pos.x, pos.y, pos.z-1.02, 0, 0, 0, 0, 0, 0, 0.7,0.7,0.8, 255,255,255, 200, 0, 0, 2, 0, 0, 0, 0)
+				if distance <= 1 then
+					POS_actual = pos.id
+					if not gui_interiors.opened then
+						gui_interiors_OpenMenu()
+					end
+				else
+					POS_actual = 0
+				end
+			end
+		end
+
+		if POS_actual ~= 0 and gui_interiors.opened then
+			local vehicle = GetVehiclePedIsIn(ped, false)
+
+			if (Vdist(playerPos.x, playerPos.y, playerPos.z, INTERIORS[POS_actual].x, INTERIORS[POS_actual].y, INTERIORS[POS_actual].z) > 2.0) then
+				gui_interiors_CloseMenu()
+				continue
+			end
+
+			local menu = gui_interiors.menu[gui_interiors.currentmenu]
+			gui_interiors_drawTxt(gui_interiors.title,1,1,gui_interiors.x,gui_interiors.y,1.0, 255,255,255,255)
+			gui_interiors_drawMenuTitle(menu.title, gui_interiors.x,gui_interiors.y + 0.08)
+			gui_interiors_drawTxt(gui_interiors.selectedbutton.."/"..gui_interiors.lastbuttoncount,0,0,gui_interiors.x + gui_interiors.width/2 - 0.0385,gui_interiors.y + 0.067,0.4, 255,255,255,255)
+			local y = gui_interiors.y + 0.12
+
+			gui_interiors.lastbuttoncount = 0
+
+			if gui_interiors.currentmenu == "main" then
+				for i,btn in pairs(INTERIORS[POS_actual].destination) do
+					gui_interiors.lastbuttoncount = gui_interiors.lastbuttoncount + 1
+					if i >= gui_interiors.from and i <= gui_interiors.to then
+						local button = INTERIORS[btn]
+						local selected = false
+						if i == gui_interiors.selectedbutton then
+							selected = true
+						end
+						gui_interiors_drawMenuButton(button,gui_interiors.x,y,selected)
+	--					if button.type ~= nil then
+	--						gui_interiors_drawMenuRight(button.type,gui_interiors.x,y,selected)
+	--					end
+						y = y + 0.04
+						if selected and IsControlJustPressed(1,201) then
+							gui_interiors_ButtonSelected(button)
+						end
+					end
+				end
+			end
+			if IsControlJustPressed(1,177) then
+				gui_interiors_BackMenu()
+			end
+			if gui_interiors.lastbuttoncount == 0 then continue end
+			if IsControlJustPressed(1,188) then
+				if gui_interiors.selectedbutton > 1 then
+					gui_interiors.selectedbutton = gui_interiors.selectedbutton -1
+					PlaySound(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+					if gui_interiors.lastbuttoncount > 10 and gui_interiors.selectedbutton < gui_interiors.from then
+						gui_interiors.from = gui_interiors.from -1
+						gui_interiors.to = gui_interiors.to - 1
+					end
+				end
+			end
+			if IsControlJustPressed(1,187)then
+				if gui_interiors.selectedbutton < gui_interiors.lastbuttoncount then
+					gui_interiors.selectedbutton = gui_interiors.selectedbutton +1
+					PlaySound(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+					if gui_interiors.lastbuttoncount > 10 and gui_interiors.selectedbutton > gui_interiors.to then
+						gui_interiors.to = gui_interiors.to + 1
+						gui_interiors.from = gui_interiors.from + 1
+					end
+				end
+			end
+		end
+	end
+end)
