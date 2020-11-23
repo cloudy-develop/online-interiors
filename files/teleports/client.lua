@@ -382,7 +382,13 @@ Citizen.CreateThread(function()
 		if gui_interiors.hasBeenTeleported then continue end
 		
 		local ped = GetPlayerPed(-1)
-		local playerPos = GetEntityCoords(ped, true)
+		local vehicle = GetVehiclePedIsIn(ped, false)
+		local playerPos
+		if vehicle == 0 then --not in a vehicle
+			playerPos = GetEntityCoords(ped)
+		else -- in a vehicle
+			playerPos = GetEntityCoords(vehicle)
+		end
 
 		for _,pos in pairs(INTERIORS) do
 			local distance = Vdist(playerPos.x, playerPos.y, playerPos.z, pos.x, pos.y, pos.z)
@@ -401,7 +407,6 @@ Citizen.CreateThread(function()
 		end
 
 		if POS_actual ~= 0 and gui_interiors.opened then
-			local vehicle = GetVehiclePedIsIn(ped, false)
 
 			if (Vdist(playerPos.x, playerPos.y, playerPos.z, INTERIORS[POS_actual].x, INTERIORS[POS_actual].y, INTERIORS[POS_actual].z) > 2.0) then
 				gui_interiors_CloseMenu()
@@ -426,9 +431,6 @@ Citizen.CreateThread(function()
 							selected = true
 						end
 						gui_interiors_drawMenuButton(button,gui_interiors.x,y,selected)
-	--					if button.type ~= nil then
-	--						gui_interiors_drawMenuRight(button.type,gui_interiors.x,y,selected)
-	--					end
 						y = y + 0.04
 						if selected and IsControlJustPressed(1,201) then
 							gui_interiors_ButtonSelected(button)
