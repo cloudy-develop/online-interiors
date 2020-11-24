@@ -404,7 +404,7 @@ Citizen.CreateThread(function()
 			end
 		end
 
-		if gui_interiors.opened then
+		if POS_actual ~= 0 and gui_interiors.opened then
 
 			if (Vdist(playerPos.x, playerPos.y, playerPos.z, INTERIORS[POS_actual].x, INTERIORS[POS_actual].y, INTERIORS[POS_actual].z) > 2.0) then
 				gui_interiors_CloseMenu()
@@ -418,7 +418,7 @@ Citizen.CreateThread(function()
 
 			gui_interiors.lastbuttoncount = 0
 
-			if POS_actual ~= 0 and gui_interiors.currentmenu == "main" then
+			if gui_interiors.currentmenu == "main" then
 				for i,btn in pairs(INTERIORS[POS_actual].destination) do
 					gui_interiors.lastbuttoncount = gui_interiors.lastbuttoncount + 1
 					if i >= gui_interiors.from and i <= gui_interiors.to then
