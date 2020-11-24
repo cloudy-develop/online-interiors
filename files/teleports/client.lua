@@ -400,15 +400,18 @@ Citizen.CreateThread(function()
 					end
 				else
 					POS_actual = 0
+					if gui_interiors.opened then
+						gui_interiors_CloseMenu()
+					end
 				end
 			end
 		end
 
 		if POS_actual ~= 0 and gui_interiors.opened then
 
-			if (Vdist(playerPos.x, playerPos.y, playerPos.z, INTERIORS[POS_actual].x, INTERIORS[POS_actual].y, INTERIORS[POS_actual].z) > 2.0) then
-				gui_interiors_CloseMenu()
-			end
+--			if (Vdist(playerPos.x, playerPos.y, playerPos.z, INTERIORS[POS_actual].x, INTERIORS[POS_actual].y, INTERIORS[POS_actual].z) > 2.0) then
+--				gui_interiors_CloseMenu()
+--			end
 
 			local menu = gui_interiors.menu[gui_interiors.currentmenu]
 			gui_interiors_drawTxt(gui_interiors.title,1,1,gui_interiors.x,gui_interiors.y,1.0, 255,255,255,255)
