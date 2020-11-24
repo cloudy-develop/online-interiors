@@ -345,18 +345,6 @@ local function gui_interiors_drawTxt(text,font,centre,x,y,scale,r,g,b,a)
 	DrawText(x , y)
 end
 -------------------------------------------------
-----------------CONFIG BACK MENU-----------------
--------------------------------------------------
-local function gui_interiors_BackMenu()
-	if gui_interiors.currentmenu == "main" then
-		gui_interiors.lastmenu = nil
-		gui_interiors_CloseMenu()
-		PlaySound(-1, "QUIT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
-	elseif gui_interiors.lastmenu ~= nil then
-		gui_interiors_OpenSubMenu(gui_interiors.lastmenu)
-	end 
-end
--------------------------------------------------
 ----------------FONCTION OPEN--------------------
 -------------------------------------------------
 local function gui_interiors_OpenMenu()
@@ -372,6 +360,19 @@ local function gui_interiors_CloseMenu()
 	gui_interiors.selectedbutton = 0
 	gui_interiors.lastbuttoncount = 0
 end
+-------------------------------------------------
+----------------CONFIG BACK MENU-----------------
+-------------------------------------------------
+local function gui_interiors_BackMenu()
+	if gui_interiors.currentmenu == "main" then
+		gui_interiors.lastmenu = nil
+		gui_interiors_CloseMenu()
+		PlaySound(-1, "QUIT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+	elseif gui_interiors.lastmenu ~= nil then
+		gui_interiors_OpenSubMenu(gui_interiors.lastmenu)
+	end 
+end
+
 local POS_actual = 0
 -------------------------------------------------
 ----------------FONCTION OPEN MENU---------------
@@ -405,7 +406,7 @@ Citizen.CreateThread(function()
 
 		if POS_actual ~= 0 and gui_interiors.opened then
 
-			if (Vdist(playerPos.x, playerPos.y, playerPos.z, INTERIORS[POS_actual].x, INTERIORS[POS_actual].y, INTERIORS[POS_actual].z) > 2.0) then
+			if gui_interiors.hasBeenTeleported or (Vdist(playerPos.x, playerPos.y, playerPos.z, INTERIORS[POS_actual].x, INTERIORS[POS_actual].y, INTERIORS[POS_actual].z) > 2) then
 				gui_interiors_CloseMenu()
 			end
 
