@@ -378,8 +378,6 @@ Citizen.CreateThread(function()
 	local POS_actual = 0
 	while true do
 		Citizen.Wait(0)
-
-		if gui_interiors.hasBeenTeleported then continue end
 		
 		local ped = GetPlayerPed(-1)
 		local vehicle = GetVehiclePedIsIn(ped, false)
@@ -406,11 +404,10 @@ Citizen.CreateThread(function()
 			end
 		end
 
-		if POS_actual ~= 0 and gui_interiors.opened then
+		if gui_interiors.opened then
 
 			if (Vdist(playerPos.x, playerPos.y, playerPos.z, INTERIORS[POS_actual].x, INTERIORS[POS_actual].y, INTERIORS[POS_actual].z) > 2.0) then
 				gui_interiors_CloseMenu()
-				continue
 			end
 
 			local menu = gui_interiors.menu[gui_interiors.currentmenu]
@@ -421,7 +418,7 @@ Citizen.CreateThread(function()
 
 			gui_interiors.lastbuttoncount = 0
 
-			if gui_interiors.currentmenu == "main" then
+			if POS_actual ~= 0 and gui_interiors.currentmenu == "main" then
 				for i,btn in pairs(INTERIORS[POS_actual].destination) do
 					gui_interiors.lastbuttoncount = gui_interiors.lastbuttoncount + 1
 					if i >= gui_interiors.from and i <= gui_interiors.to then
@@ -441,24 +438,25 @@ Citizen.CreateThread(function()
 			if IsControlJustPressed(1,177) then
 				gui_interiors_BackMenu()
 			end
-			if gui_interiors.lastbuttoncount == 0 then continue end
-			if IsControlJustPressed(1,188) then
-				if gui_interiors.selectedbutton > 1 then
-					gui_interiors.selectedbutton = gui_interiors.selectedbutton -1
-					PlaySound(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
-					if gui_interiors.lastbuttoncount > 10 and gui_interiors.selectedbutton < gui_interiors.from then
-						gui_interiors.from = gui_interiors.from -1
-						gui_interiors.to = gui_interiors.to - 1
+			if gui_interiors.lastbuttoncount ~= 0 then
+				if IsControlJustPressed(1,188) then
+					if gui_interiors.selectedbutton > 1 then
+						gui_interiors.selectedbutton = gui_interiors.selectedbutton -1
+						PlaySound(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+						if gui_interiors.lastbuttoncount > 10 and gui_interiors.selectedbutton < gui_interiors.from then
+							gui_interiors.from = gui_interiors.from -1
+							gui_interiors.to = gui_interiors.to - 1
+						end
 					end
 				end
-			end
-			if IsControlJustPressed(1,187)then
-				if gui_interiors.selectedbutton < gui_interiors.lastbuttoncount then
-					gui_interiors.selectedbutton = gui_interiors.selectedbutton +1
-					PlaySound(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
-					if gui_interiors.lastbuttoncount > 10 and gui_interiors.selectedbutton > gui_interiors.to then
-						gui_interiors.to = gui_interiors.to + 1
-						gui_interiors.from = gui_interiors.from + 1
+				if IsControlJustPressed(1,187)then
+					if gui_interiors.selectedbutton < gui_interiors.lastbuttoncount then
+						gui_interiors.selectedbutton = gui_interiors.selectedbutton +1
+						PlaySound(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+						if gui_interiors.lastbuttoncount > 10 and gui_interiors.selectedbutton > gui_interiors.to then
+							gui_interiors.to = gui_interiors.to + 1
+							gui_interiors.from = gui_interiors.from + 1
+						end
 					end
 				end
 			end
