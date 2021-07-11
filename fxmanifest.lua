@@ -1,57 +1,39 @@
-fx_version 'bodacious'
-games { 'gta5' }
+fx_version 'cerulean'
+game 'gta5'
 
 author 'Cloudy'
-description 'Online Interiors'
-version '1.0.2'
+version '2.0'
 
-dependency 'bob74_ipl'
-
-client_scripts{
-	-- IPL Scripts --
-	'files/maps/ipl_edits/after_hours/nightclub/client.lua',
-	'files/maps/ipl_edits/after_hours/nightclub_exteriors/client.lua',
-	'files/maps/ipl_edits/bikers/businesses/cocaine/client.lua',
-	'files/maps/ipl_edits/bikers/businesses/counterfeit_cash/client.lua',
-	'files/maps/ipl_edits/bikers/businesses/document_forgery/client.lua',
-	'files/maps/ipl_edits/bikers/businesses/meth/client.lua',
-	'files/maps/ipl_edits/bikers/businesses/weed/client.lua',
-	'files/maps/ipl_edits/bikers/clubhouses/clubhouse_1/client.lua',
-	'files/maps/ipl_edits/bikers/clubhouses/clubhouse_2/client.lua',
-	'files/maps/ipl_edits/bikers/gang/client.lua',
-	'files/maps/ipl_edits/doomsday/facility/client.lua',
-	'files/maps/ipl_edits/finance_felony/offices/arcadius_business_centre/client.lua',
-	'files/maps/ipl_edits/finance_felony/offices/lom_bank/client.lua',
-	'files/maps/ipl_edits/finance_felony/offices/maze_bank/client.lua',
-	'files/maps/ipl_edits/finance_felony/offices/maze_bank_west/client.lua',
-	'files/maps/ipl_edits/finance_felony/organization/client.lua',
-	'files/maps/ipl_edits/gunrunning/bunker/client.lua',
-	'files/maps/ipl_edits/gunrunning/yacht/client.lua',
-	'files/maps/ipl_edits/heists/aircraft_carrier/client.lua',
-	'files/maps/ipl_edits/heists/yacht/client.lua',
-	'files/maps/ipl_edits/import_export/garages/arcadius_business_centre/client.lua',
-	'files/maps/ipl_edits/import_export/garages/lom_bank/client.lua',
-	'files/maps/ipl_edits/import_export/garages/maze_bank/client.lua',
-	'files/maps/ipl_edits/import_export/garages/maze_bank_west/client.lua',
-	'files/maps/ipl_edits/import_export/vehicle_warehouse/client.lua',
-	'files/maps/ipl_edits/smugglers/hanger/client.lua',
-	
-	-- Teleport Scripts --
-	'files/teleports/vk_main/client.lua',
-	'files/teleports/vk_teleports/client.lua',
-	'files/teleports/vk_teleports/config.lua',
-	'files/teleports/vk_teleports/gui.lua',
-	
-	-- Blip Script --
-	'files/blips/client.lua'
+dependencies {
+    'bob74_ipl'
 }
 
-server_scripts{
-	-- Teleport Script --
-	'files/teleports/vk_main/server.lua'
-}
-
-exports {
-    'localPed',
-    'tablelength'
+client_scripts {
+	'client/*.lua',
+	'client/maps/after_hours/nightclub/*.lua',
+	'client/maps/after_hours/nightclub_exteriors/*.lua',
+	'client/maps/bikers/businesses/cocaine/*.lua',
+	'client/maps/bikers/businesses/counterfeit_cash/*.lua',
+	'client/maps/bikers/businesses/document_forgery/*.lua',
+	'client/maps/bikers/businesses/meth/*.lua',
+	'client/maps/bikers/businesses/weed/*.lua',
+	'client/maps/bikers/clubhouses/clubhouse_1/*.lua',
+	'client/maps/bikers/clubhouses/clubhouse_2/*.lua',
+	'client/maps/bikers/gang/*.lua',
+	'client/maps/doomsday/facility/*.lua',
+	'client/maps/finance_felony/offices/arcadius_business_centre/*.lua',
+	'client/maps/finance_felony/offices/lom_bank/*.lua',
+	'client/maps/finance_felony/offices/maze_bank/*.lua',
+	'client/maps/finance_felony/offices/maze_bank_west/*.lua',
+	'client/maps/finance_felony/organization/*.lua',
+	'client/maps/gunrunning/bunker/*.lua',
+	'client/maps/gunrunning/yacht/*.lua',
+	'client/maps/heists/aircraft_carrier/*.lua',
+	'client/maps/heists/yacht/*.lua',
+	'client/maps/import_export/garages/arcadius_business_centre/*.lua',
+	'client/maps/import_export/garages/lom_bank/*.lua',
+	'client/maps/import_export/garages/maze_bank/*.lua',
+	'client/maps/import_export/garages/maze_bank_west/*.lua',
+	'client/maps/import_export/vehicle_warehouse/*.lua',
+	'client/maps/smugglers/hanger/*.lua'
 }
