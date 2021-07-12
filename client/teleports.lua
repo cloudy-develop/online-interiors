@@ -181,7 +181,7 @@ local teleports = {
 	{text = "Del Perro Heights Garage", dest = {54,55,56,57}, x = -1456.37, y = -514.44, z = 31.58, h = 211.62}
 }
 
--- Don't touch! Like really don't touch below.
+-- Don't edit below this line.
 
 local function Teleport(teleport)
 	Citizen.CreateThread(function()
@@ -375,57 +375,25 @@ Citizen.CreateThread(function()
 				end
 				
 				if (distance < 100.0) then
-					if (var.veh == false) then
-						DrawMarker(1, var.x, var.y, var.z - 1.02, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.7, 0.7, 0.9, 255, 255, 255, 255, false, false, 2, false, nil, nil, false)
-						if (distance < 2.0) then
-							if (vehicle == 0) then
-								if (#var.dest > 1) then
-									DrawMenu(i)
-								else
-									DrawHelp(i)
-								end
-							end
-						end
-					else
-						DrawMarker(1, var.x, var.y, var.z - 1.02, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.7, 0.7, 0.9, 255, 255, 255, 255, false, false, 2, false, nil, nil, false)
-						if (distance < 2.0) then
-							if (vehicle == 0) then
-								if (#var.dest > 1) then
-									DrawMenu(i)
-								else
-									DrawHelp(i)
-								end
+					DrawMarker(1, var.x, var.y, var.z - 1.02, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.7, 0.7, 0.9, 255, 255, 255, 255, false, false, 2, false, nil, nil, false)
+					-- DrawMarker(1, var.x, var.y, var.z - 1.02, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.5, 2.5, 0.9, 255, 255, 255, 255, false, false, 2, false, nil, nil, false)
+					
+					if (distance < 2.0) then
+						if (vehicle == 0) then
+							if (#var.dest > 1) then
+								DrawMenu(i)
 							else
-								if (GetPedInVehicleSeat(vehicle, -1) == player) then
-									if (#var.dest > 1) then
-										DrawMenu(i)
-									elseif (#var.dest == 1) then
-										DrawHelp(i)
-									end
-								end 
+								DrawHelp(i)
 							end
-						end
-	
-						--[[
-							DrawMarker(1, var.x, var.y, var.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.5, 2.5, 0.9, 255, 255, 255, 255, false, false, 2, false, nil, nil, false)
-							if (distance < 3.0) then
-								if (vehicle == 0) then
-									if (#var.dest > 1) then
-										DrawMenu(i)
-									else
-										DrawHelp(i)
-									end
-								else
-									if (GetPedInVehicleSeat(vehicle, -1) == player) then
-										if (#var.dest > 1) then
-											DrawMenu(i)
-										else
-											DrawHelp(i)
-										end
-									end 
+						else
+							if (GetPedInVehicleSeat(vehicle, -1) == player) then
+								if (#var.dest > 1) then
+									DrawMenu(i)
+								elseif (#var.dest == 1) then
+									DrawHelp(i)
 								end
-							end
-						]]--
+							end 
+						end
 					end
 				end
 			end
