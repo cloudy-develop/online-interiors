@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 
 author 'Cloudy'
-version '2.0'
+version '2.1'
 
 dependencies {
     'bob74_ipl'
