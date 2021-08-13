@@ -21,10 +21,10 @@ local blips = {
 	{text = "House", color = 0, sprite = 40, x = 120.500, y = 549.952, z = 184.097},
 	{text = "House", color = 0, sprite = 40, x = -1288.000, y = 440.748, z = 97.69459},
 	-- Offices
-    {text = "Office", color = 0, sprite = 475, x = -68.342, y = -799.828, z = 44.227},
-    {text = "Office", color = 0, sprite = 475, x = -115.121, y = -605.403, z = 36.281},
-    {text = "Office", color = 0, sprite = 475, x = -1371.115, y = -503.707, z = 33.157},
-    {text = "Office", color = 0, sprite = 475, x = -1581.242, y = -558.449, z = 34.953},
+	{text = "Office", color = 0, sprite = 475, x = -68.342, y = -799.828, z = 44.227},
+	{text = "Office", color = 0, sprite = 475, x = -115.121, y = -605.403, z = 36.281},
+	{text = "Office", color = 0, sprite = 475, x = -1371.115, y = -503.707, z = 33.157},
+	{text = "Office", color = 0, sprite = 475, x = -1581.242, y = -558.449, z = 34.953},
 	-- Businesses
 	{text = "Cocaine Lockup", color = 0, sprite = 497, x = 51.92, y = 6486.31, z = 31.43},
 	{text = "Counterfeit Cash Factory", color = 0, sprite = 500, x = -1166.843, y = -1386.159, z = 4.971},
@@ -62,15 +62,15 @@ local blips = {
 -- Don't edit below this line.
 
 Citizen.CreateThread(function()
-    for i,var in pairs(blips) do
+	for i,var in pairs(blips) do
 		var.blip = AddBlipForCoord(var.x, var.y, var.z)
 		SetBlipAsShortRange(var.blip, true)
+		SetBlipSprite(var.blip, var.sprite)
 		SetBlipColour(var.blip, var.color)
-      	SetBlipSprite(var.blip, var.sprite)
-      	SetBlipDisplay(var.blip, 4)
-      	SetBlipScale(var.blip, 0.9)
-	  	BeginTextCommandSetBlipName("STRING")
-      	AddTextComponentString(var.text)
-      	EndTextCommandSetBlipName(var.blip)
-    end
+		SetBlipDisplay(var.blip, 4)
+		SetBlipScale(var.blip, 0.9)
+		BeginTextCommandSetBlipName("STRING")
+		AddTextComponentString(var.text)
+		EndTextCommandSetBlipName(var.blip)
+	end
 end)
